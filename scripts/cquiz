@@ -1,43 +1,58 @@
 #!/bin/bash
 
 if [[ -z "$PROJECT_ROOT" || -z "$MAKEFILE_DIR" ]]; then
-    echo "Error: Please run 'setup_workspace.sh' first."
-    exit 1
+	echo "Error: Please run 'setup_workspace.sh' first."
+	exit 1
 fi
 
 usage() {
-    script_name=$(basename "$0")
-    echo "Usage: $script_name [-c|--category CATEGORY] [-n|--name QUIZ]"
-    echo "Example: $script_name -c array -n array_quiz"
-    exit 1
+	script_name=$(basename "$0")
+	echo "Usage: $script_name [-c|--category CATEGORY] [-n|--name QUIZ]"
+	echo "Example: $script_name -c array -n array_quiz"
+	exit 1
 }
 
 while [[ $# -gt 0 ]]; do
-    case "$1" in
-        -c|--category)
-            CATEGORY="$2"
-            shift 2
-            ;;
-        -n|--name)
-            QUIZ="$2"
-            shift 2
-            ;;
-        *)
-            usage
-            ;;
-    esac
+	case "$1" in
+		-c|--category)
+			CATEGORY="$2"
+			shift 2
+			;;
+		-n|--name)
+			QUIZ="$2"
+			shift 2
+			;;
+		*)
+			usage
+			;;
+	esac
 done
 
 if [[ -z "$CATEGORY" || -z "$QUIZ" ]]; then
-    usage
+	usage
 fi
 
 CATEGORY_DIR="$PROJECT_ROOT/categories/$CATEGORY"
 QUIZ_DIR="$CATEGORY_DIR/$QUIZ"
 
-mkdir -p "$QUIZ_DIR/src" "$QUIZ_DIR/test"
+mkdir -p "$QUIZ_DIR/src" "$QUIZ_DIR/test" "$QUIZ_DIR/ref"
 
-touch "$QUIZ_DIR/src/main.cpp" "$QUIZ_DIR/src/solution.cpp" "$QUIZ_DIR/test/input"
+cat > "$QUIZ_DIR/src/main.cpp" << 'EOF'
+#include "solution.hpp"
+#include "parser.hpp"
+#include <iostream>
+
+int main()
+{
+	InputParser ip;
+
+	Solution s;
+
+	std::cout << "==== Completed ====" << std::endl;
+	return 0;
+}
+EOF
+touch "$QUIZ_DIR/src/solution.hpp" "$QUIZ_DIR/test/input"
 
 cat > "$QUIZ_DIR/Makefile" << 'EOF'
 ifndef MAKEFILE_DIR

@@ -1,9 +1,11 @@
+PROJECT_ROOT := $(shell echo $$PROJECT_ROOT)
+
 CXX = g++
-CXXFLAGS = -Wall -std=c++17 -g -I ~/lc/programmercarl/lib
+CXXFLAGS = -Wall -std=c++17 -g -I $(PROJECT_ROOT)/lib
 
 SRC_DIR = src
 BIN_DIR = bin
-LIB_DIR = ~/lc/programmercarl/lib
+LIB_DIR = $(PROJECT_ROOT)/lib
 TEST_DIR = test
 
 
