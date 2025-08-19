@@ -12,7 +12,6 @@ public:
 			if (curr->val == val)
 			{
 				prev->next = curr->next;
-				curr->next.reset();
 				curr = prev->next;
 			} else {
 				prev = curr;
