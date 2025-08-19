@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include "linked-list.hpp"
 
 #define LEFT_BRAKET std::cout << "["
 #define RIGHT_BRAKET std::cout << "]"
@@ -13,6 +14,7 @@ public:
 	void operator()(std::vector<int> & nums);
 	void operator()(std::string & str);
 	void operator()(std::vector<std::string> & strs);
+	void operator()(std::shared_ptr<ListNode> & head);
 };
 
 class OutputParser
@@ -21,6 +23,8 @@ public:
 	void operator()(std::vector<int> const & nums);
 	void operator()(std::vector<std::vector<int>> const & vecNums);
 	void operator()(std::vector<std::vector<std::string>> const & vecStrs);
+	void operator()(std::shared_ptr<ListNode const> const & head);
+
 };
 
 void InputParser::operator()(int& num)
@@ -44,7 +48,8 @@ void InputParser::operator()(std::vector<int>& nums)
 		line = line.substr(1, line.length() - 2);
 		std::istringstream iss(line);
 		std::string strNum;
-		while (std::getline(iss, strNum, ',')) {
+		while (std::getline(iss, strNum, ','))
+		{
 			int num = std::stoi(strNum);
 			nums.push_back(num);
 		}
@@ -78,6 +83,28 @@ void InputParser::operator()(std::vector<std::string>& strs)
 				iss >> ch;
 			}
 		}
+	}
+}
+
+void InputParser::operator()(std::shared_ptr<ListNode> & head)
+{
+	head.reset();
+	std::string line;
+
+	if (std::getline(std::cin, line))
+	{
+		line = line.substr(1, line.length() - 2);
+		std::istringstream iss(line);
+		std::string strNum;
+		auto dum = std::make_shared<ListNode>(0, head);
+		auto cur = dum;
+		while (std::getline(iss, strNum, ','))
+		{
+			int num = std::stoi(strNum);
+			cur->next = std::make_shared<ListNode>(num);
+			cur = cur->next;
+		}
+		head = dum->next;
 	}
 }
 
@@ -137,6 +164,21 @@ void OutputParser::operator()(const std::vector<std::vector<std::string>> & vecS
 		}
 		RIGHT_BRAKET;
 		if (i < vecStrs.size() - 1)
+		{
+			COMMA;
+		}
+	}
+	RIGHT_BRAKET << std::endl;
+}
+
+void OutputParser::operator()(std::shared_ptr<ListNode const> const & head)
+{
+	LEFT_BRAKET;
+	auto curr = head;
+	while (curr)
+	{
+		std::cout << curr->val;
+		if ((curr = curr->next))
 		{
 			COMMA;
 		}
