@@ -185,3 +185,14 @@ void OutputParser::operator()(std::shared_ptr<ListNode const> const & head)
 	}
 	RIGHT_BRAKET << std::endl;
 }
+
+std::ostream & operator<<(std::ostream & os, std::vector<int> const & vec)
+{
+	os << "[";
+	for (size_t i = 0; i < vec.size(); ++i) {
+		os << vec[i];
+		if (i != vec.size() - 1) os << ",";
+	}
+	os << "]";
+	return os;
+}

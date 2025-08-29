@@ -1,0 +1,7 @@
+problem: "Minimum Size Sub-array Sum"
+url: "https://leetcode.cn/problems/minimum-size-subarray-sum/"
+tcs:
+  - input:
+      nums: [2,3,1,2,4,3]
+      target: 7
+    expect: 2

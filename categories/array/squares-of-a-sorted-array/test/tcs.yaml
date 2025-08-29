@@ -1,0 +1,6 @@
+problem: "Squares of a Sorted Array"
+url: "https://leetcode.cn/problems/squares-of-a-sorted-array/"
+tcs:
+  - input:
+      nums: [-4,-1,0,3,10]
+    expect: [0,1,9,16,100]

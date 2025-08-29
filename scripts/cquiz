@@ -35,24 +35,42 @@ fi
 CATEGORY_DIR="$PROJECT_ROOT/categories/$CATEGORY"
 QUIZ_DIR="$CATEGORY_DIR/$QUIZ"
 
-mkdir -p "$QUIZ_DIR/src" "$QUIZ_DIR/test" "$QUIZ_DIR/ref"
+mkdir -p "$QUIZ_DIR/src" "$QUIZ_DIR/test"
 
 cat > "$QUIZ_DIR/src/main.cpp" << 'EOF'
 #include "solution.hpp"
 #include "parser.hpp"
 #include <iostream>
+#include <yaml-cpp/yaml.h>
 
 int main()
 {
-	InputParser ip;
+	YAML::Node tcs = YAML::LoadFile("./test/tcs.yaml");
 
 	Solution s;
 
-	std::cout << "==== Completed ====" << std::endl;
+	for (auto const & tc : tcs["tcs"])
+	{
+		// Init input args here
+
+		// auto res = s(...);
+
+		// if (res != expect)
+		{
+			std::cout
+				<< "{FAILED}:"
+					<< "[input:" << "],"
+					<< "[expect:" << "],"
+					<< "[got:" << << "]"
+				<< std::endl;
+		}
+	}
+
+	std::cout << "==== All Test Cases Completed ====" << std::endl;
 	return 0;
 }
 EOF
-touch "$QUIZ_DIR/src/solution.hpp" "$QUIZ_DIR/test/input"
+touch "$QUIZ_DIR/src/solution.hpp" "$QUIZ_DIR/test/tcs.yaml"
 
 cat > "$QUIZ_DIR/Makefile" << 'EOF'
 ifndef MAKEFILE_DIR
