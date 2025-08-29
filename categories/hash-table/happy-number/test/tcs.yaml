@@ -1,0 +1,9 @@
+problem: "Happy Number"
+url: "https://leetcode.cn/problems/happy-number/"
+tcs:
+  - input:
+      n: 19
+    expect: true
+  - input:
+      n: 2
+    expect: false

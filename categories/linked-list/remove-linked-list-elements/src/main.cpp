@@ -1,22 +1,34 @@
 #include "solution.hpp"
 #include "parser.hpp"
 #include <iostream>
+#include <yaml-cpp/yaml.h>
 
 int main()
 {
-	auto head = std::make_shared<ListNode>(-1);
-	int val;
-	InputParser ip;
-	ip(head);
-	ip(val);
-	
-	Solution s;
-	auto res = s(head, val);
-	OutputParser op;
-	op(res);
-	// OutputParser op;
-	// op(head);
+	YAML::Node tcs = YAML::LoadFile("./test/tcs.yaml");
 
-	std::cout << "==== Completed ====" << std::endl;
+	Solution s;
+
+	for (auto const & tc : tcs["tcs"])
+	{
+		std::shared_ptr<ListNode> head = ListNode::from(tc["input"]["head"].as<std::vector<int>>());
+		int val = tc["input"]["val"].as<int>();
+		std::shared_ptr<ListNode> expect = ListNode::from(tc["expect"].as<std::vector<int>>());
+
+		auto res = s(head, val);
+
+		auto vres = res->to_vec(), vexpect = expect->to_vec();
+		if (vres != vexpect)
+		{
+			std::cout
+				<< "{FAILED}:"
+					<< "[input:" << "head=" << head->to_vec() << ",val=" << val << "],"
+					<< "[expect:" << vexpect << "],"
+					<< "[got:" << vres << "]"
+				<< std::endl;
+		}
+	}
+
+	std::cout << "==== All Test Cases Completed ====" << std::endl;
 	return 0;
 }

@@ -1,0 +1,15 @@
+problem: "Remove n-th Node from End of List"
+url: "https://leetcode.cn/problems/remove-nth-node-from-end-of-list/"
+tcs:
+  - input:
+      head: [1,2,3,4,5]
+      n: 2
+    expect: [1,2,3,5]
+  - input:
+      head: [1]
+      n: 1
+    expect: []
+  - input:
+      head: [1,2]
+      n: 1
+    expect: [1]

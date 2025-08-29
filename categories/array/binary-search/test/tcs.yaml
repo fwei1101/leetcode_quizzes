@@ -1,0 +1,11 @@
+problem: "Binary Search"
+url: "https://leetcode.cn/problems/binary-search/"
+tcs:
+  - input:
+      nums: [-1,0,3,5,9,12]
+      target: 9
+    expect: 4
+  - input:
+      nums: [-1,0,3,5,9,12]
+      target: 2
+    expect: -1

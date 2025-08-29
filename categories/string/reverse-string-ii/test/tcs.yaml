@@ -1,0 +1,11 @@
+problem: "Reverse String II"
+url: "https://leetcode.cn/problems/reverse-string-ii/"
+tcs:
+  - input:
+      s: "abcdefg"
+      k: 2
+    expect: "bacdfeg"
+  - input:
+      s: "abcd"
+      k: 2
+    expect: "bacd"

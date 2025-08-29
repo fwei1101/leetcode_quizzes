@@ -1,0 +1,12 @@
+problem: "Swap Nodes in Pairs"
+url: "https://leetcode.cn/problems/swap-nodes-in-pairs/"
+tcs:
+  - input:
+      head: [1,2,3,4]
+    expect: [2,1,4,3]
+  - input:
+      head: [1]
+    expect: [1]
+  - input:
+      head: []
+    expect: []

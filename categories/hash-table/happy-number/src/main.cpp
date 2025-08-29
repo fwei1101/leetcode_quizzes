@@ -1,18 +1,32 @@
 #include "solution.hpp"
 #include "parser.hpp"
 #include <iostream>
+#include <yaml-cpp/yaml.h>
 
 int main()
 {
-	int i;
-	InputParser ip;
-	ip(i);
+	YAML::Node tcs = YAML::LoadFile("./test/tcs.yaml");
 
 	Solution s;
-	auto res = s(i);
 
-	std::cout << "Res: " << res << std::endl;
+	for (auto const & tc : tcs["tcs"])
+	{
+		int n = tc["input"]["n"].as<int>();
+		bool expect = tc["expect"].as<bool>();
 
-	std::cout << "==== Completed ====" << std::endl;
+		auto res = s(n);
+
+		if (res != expect)
+		{
+			std::cout
+				<< "{FAILED}:"
+					<< "[input:" << "n=" << n << "],"
+					<< "[expect:" << expect << "],"
+					<< "[got:" << res << "]"
+				<< std::endl;
+		}
+	}
+
+	std::cout << "==== All Test Cases Completed ====" << std::endl;
 	return 0;
 }

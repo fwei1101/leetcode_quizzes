@@ -3,7 +3,7 @@
 class Solution
 {
 public:
-	int operator()(int const & target, std::vector<int> const & nums)
+	int operator()(std::vector<int> const & nums, int const & target)
 	{
 		int res = __INT_MAX__, sum = 0;
 		auto left = nums.begin(), right = left;

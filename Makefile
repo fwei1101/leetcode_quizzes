@@ -2,6 +2,7 @@ PROJECT_ROOT := $(shell echo $$PROJECT_ROOT)
 
 CXX = g++
 CXXFLAGS = -Wall -std=c++17 -g -I $(PROJECT_ROOT)/lib
+LDFLAGS = -L/user/local/lib -lyaml-cpp
 
 SRC_DIR = src
 BIN_DIR = bin
@@ -19,15 +20,15 @@ all: $(EXEC)
 
 $(EXEC) : $(OBJS)
 	@mkdir -p $(@D)
-	@$(CXX) $(CXXFLAGS) -o $@ $^
+	@$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 $(BIN_DIR)/%.o : $(SRC_DIR)/%.cpp
 	@mkdir -p $(@D)
 	@$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 test: $(EXEC)
-	@echo "Running tests..."
-	@$(EXEC) < $(TEST_DIR)/input
+	@echo "==== Running tests... ===="
+	@$(EXEC)
 
 clean:
 	@rm -rf $(BIN_DIR)

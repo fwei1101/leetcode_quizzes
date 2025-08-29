@@ -1,0 +1,11 @@
+problem: "Valid Anagram"
+url: "https://leetcode.cn/problems/valid-anagram/"
+tcs:
+  - input:
+      s: "anagram"
+      t: "nagaram"
+    expect: true
+  - input:
+      s: "rat"
+      t: "car"
+    expect: false

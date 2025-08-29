@@ -1,0 +1,7 @@
+problem: "Remove Element"
+url: "https://leetcode.cn/problems/remove-element/"
+tcs:
+  - input:
+      nums: [3,2,2,3]
+      val: 3
+    expect: 2
