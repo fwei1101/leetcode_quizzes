@@ -70,7 +70,14 @@ int main()
 	return 0;
 }
 EOF
-touch "$QUIZ_DIR/src/solution.hpp" "$QUIZ_DIR/test/tcs.yaml"
+
+cat > "QUIZ_DIR/test/tcs.yaml" << 'EOF'
+problem: ""
+url: ""
+tcs:
+  - input:
+    expect: "bacdfeg"
+EOF
 
 cat > "$QUIZ_DIR/Makefile" << 'EOF'
 ifndef MAKEFILE_DIR
@@ -79,5 +86,7 @@ endif
 
 include ${MAKEFILE_DIR}/Makefile
 EOF
+
+touch "$QUIZ_DIR/src/solution.hpp"
 
 echo "Quiz directory created at: $QUIZ_DIR"

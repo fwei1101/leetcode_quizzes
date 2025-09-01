@@ -1,0 +1,18 @@
+problem: "Valid Parentheses"
+url: "https://leetcode.cn/problems/valid-parentheses/"
+tcs:
+  - input:
+      s: "()"
+    expect: true
+  - input:
+      s: "()[]{}"
+    expect: true
+  - input:
+      s: "(]"
+    expect: false
+  - input:
+      s: "([)]"
+    expect: false
+  - input:
+      s: "([])"
+    expect: true
