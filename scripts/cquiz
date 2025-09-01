@@ -71,7 +71,7 @@ int main()
 }
 EOF
 
-cat > "QUIZ_DIR/test/tcs.yaml" << 'EOF'
+cat > "$QUIZ_DIR/test/tcs.yaml" << 'EOF'
 problem: ""
 url: ""
 tcs:

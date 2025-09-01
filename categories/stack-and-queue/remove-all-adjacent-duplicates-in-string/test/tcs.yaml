@@ -1,0 +1,9 @@
+problem: "Remove All Adjacent Duplicates in String"
+url: "https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/"
+tcs:
+  - input:
+      s: "abbaca"
+    expect: "ca"
+  - input:
+      s: "azxxzy"
+    expect: "ay"
