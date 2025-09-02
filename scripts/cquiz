@@ -47,21 +47,23 @@ int main()
 {
 	YAML::Node tcs = YAML::LoadFile("./test/tcs.yaml");
 
-	Solution s;
+	Solution sol;
 
 	for (auto const & tc : tcs["tcs"])
 	{
-		// Init input args here
+		auto arg1 = tc["input"]["arg1"].as<ARG1>();
+		auto arg2 = tc["input"]["arg2"].as<ARG2>();
+		auto expect = tc["expect"].as<EXPECT>();
 
-		// auto res = s(...);
+		auto res = sol(arg1, arg2);
 
-		// if (res != expect)
+		if (res != expect)
 		{
 			std::cout
 				<< "{FAILED}:"
-					<< "[input:" << "],"
-					<< "[expect:" << "],"
-					<< "[got:" << << "]"
+					<< "[input:" << "arg1=" << arg1 << ",arg2=" << arg2 << "],"
+					<< "[expect:" << expect << "],"
+					<< "[got:" << res << "]"
 				<< std::endl;
 		}
 	}
