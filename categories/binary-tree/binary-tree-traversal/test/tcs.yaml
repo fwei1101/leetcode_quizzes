@@ -1,0 +1,23 @@
+problem: "Binary Tree Pre-order Traversal"
+# problem: "Binary Tree In-order Traversal"
+# problem: "Binary Tree Post-order Travers
+url: "https://leetcode.cn/problems/binary-tree-preorder-traversal/"
+# url: "https://leetcode.cn/problems/binary-tree-inorder-traversal"
+# url: "https://leetcode.cn/problems/binary-tree-postorder-traversal"
+tcs:
+  - input:
+      root: [1,null,2,3]
+    # expect: [1,2,3] # Pre-order
+    # expect: [1,3,2] # In-order
+    expect: [3,2,1] # Post-order
+  - input:
+      root: [1,2,3,4,5,null,8,null,null,6,7,9]
+    # expect: [1,2,4,5,6,7,3,8,9] # Pre-order
+    # expect: [4,2,6,5,7,1,3,9,8] # In-order
+    expect: [4,6,7,5,2,9,8,3,1] # Post-order
+  - input:
+      root: []
+    expect: []
+  - input:
+      root: [1]
+    expect: [1]
