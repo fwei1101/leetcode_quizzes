@@ -1,0 +1,9 @@
+problem: "Average of Levels in Binary Tree"
+url: "https://leetcode.cn/problems/average-of-levels-in-binary-tree/"
+tcs:
+  - input:
+      root: [3,9,20,null,null,15,7]
+    expect: [3.00000,14.50000,11.00000]
+  - input:
+      root: [3,9,20,15,7]
+    expect: [3.00000,14.50000,11.00000]
