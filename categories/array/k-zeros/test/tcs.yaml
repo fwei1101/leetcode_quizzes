@@ -1,0 +1,7 @@
+problem: "Given 1/0 array and a k quota to turn 0 to 1, query the maximum length of continuous 1s"
+url: ""
+tcs:
+  - input:
+      nums: [1, 0, 0, 0, 1, 1, 0, 1]
+      k: 3
+    expect: 6
